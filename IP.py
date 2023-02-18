@@ -8,6 +8,7 @@ def init():
     global partie_2
     global partie_2_sans_cro
 
+    #ip = "172.168.255.4/22"
     ip= input("Votre IP: ")
 
     partie_ip = ip.split("/")
@@ -34,11 +35,11 @@ def masque():
 
 def adresse_reseau():
     print("L'adresse de sous réseau est: ", end='')
-    print(int(partie_1[0]) & liste_masque[0],".",  end='')
-    print(int(partie_1[1]) & liste_masque[1],".",  end='')
-    print(int(partie_1[2]) & liste_masque[2],".",  end='')
-    print(int(partie_1[3]) & liste_masque[3])   
-
+    adresse_reseau_1= int(partie_1[0]) & liste_masque[0]
+    adresse_reseau_2=int(partie_1[1]) & liste_masque[1]
+    adresse_reseau_3=int(partie_1[2]) & liste_masque[2]
+    adresse_reseau_4=(int(partie_1[3]) & liste_masque[3]) 
+    print(adresse_reseau_1,".", adresse_reseau_2,".", adresse_reseau_3,".", adresse_reseau_4)
 
 
 def adresse_diffusion():
@@ -50,7 +51,14 @@ def adresse_diffusion():
     inversement = ''.join(['0' if x == '1' else '1' for x in subnet_mask_binary])
     bin_diffusion = ''.join([str(int(network_address_binary[i]) | int(inversement[i])) for i in range(32)])
 
-    print("L'adresse de diffusion: ",bin_diffusion)
+    print("L'adresse de diffusion: ", end='')
+
+    partie_1_dec = int(str("".join(str(bit) for bit in list(str(bin_diffusion))[0:8])), 2)
+    partie_2_dec = int(str("".join(str(bit) for bit in list(str(bin_diffusion))[8:16])), 2)
+    partie_3_dec = int(str("".join(str(bit) for bit in list(str(bin_diffusion))[16:24])), 2)
+    partie_4_dec = int(str("".join(str(bit) for bit in list(str(bin_diffusion))[24:32])), 2)
+    print(partie_1_dec,".", partie_2_dec,".", partie_3_dec,".", partie_4_dec)
+
 
 def nombre_clients():
     
@@ -67,3 +75,4 @@ masque()
 adresse_reseau()
 adresse_diffusion()
 nombre_clients()
+input('\nAppuyer sur entrée ...')

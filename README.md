@@ -7,3 +7,8 @@ Par exemple : ```172.168.24.10/24```.
 Il vas donner le masque, l'adresse Broadcast/diffusion, l'adresse réseau ainsi que le nombres de clients.
 
 Ce programme a été fais en 4h.
+
+
+
+MP°1
+Adrien 
